@@ -1,0 +1,148 @@
+:root {
+  font-family: sans-serif;
+  --source-code-icon-size: 0.75rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    background-color: #222;
+    color: #ddd;
+  }
+}
+
+@media (max-aspect-ratio: 3/2) {
+  :root {
+    --source-code-icon-size: 0.5rem;
+  }
+}
+
+
+
+#source-code {
+  position: absolute;
+  right: calc(0.75 * var(--source-code-icon-size));
+  top: calc(0.5 * var(--source-code-icon-size));
+  color: black;
+  font-size: calc(1.5 * var(--source-code-icon-size));
+}
+
+#source-code svg {
+  width:  calc(2.5 * var(--source-code-icon-size));
+  height: calc(2.5 * var(--source-code-icon-size));
+}
+
+#source-code p {
+  margin: calc(-0.4 * var(--source-code-icon-size))
+          0
+          0
+          calc(-0.75 * var(--source-code-icon-size));
+}
+
+.corner-fold {
+  width: 0;
+  height: 0;
+  border-bottom: calc(10 * var(--source-code-icon-size)) solid transparent;
+  border-right: calc(10 * var(--source-code-icon-size)) solid #f3f3f3;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+input#save-file-select[type="file"]::file-selector-button {
+  background-image: url("/img/skull.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #0000;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  transition: 0.5s;
+  border: none;
+}
+
+input#save-file-select[type="file"].file-download::file-selector-button {
+  filter: invert(100%);
+  background-color: cyan;
+  background-blend-mode: lighten;
+}
+
+input#save-file-select[type="file"] {
+  transition: 0.5s;
+}
+
+input#save-file-select[type="file"]:hover {
+  /*transition: filter 0;
+  background-color: cyan;
+  background-blend-mode: lighten;*/
+  filter: drop-shadow(0 0 3px red);
+}
+
+input#save-file-select[type="file"] {
+  font-size: 0;
+  width: 100px;
+  margin: auto;
+}
+
+label[for="save-file-select"] {
+  margin: auto;
+}
+
+div:has(> input#save-file-select[type="file"]) {
+  display: grid;
+  margin-bottom: 2rem;
+}
+
+.stats-block {
+  width: fit-content;
+  display: flex;
+  margin: 0.25rem 0.5rem;
+}
+
+.pin-slot {
+  flex-direction: column;
+}
+
+.stats-block-group {
+  display: flex;
+  width: fit-content;
+  flex-wrap: wrap;
+  margin: auto;
+  align-items: stretch;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.stats-block-group img {
+  align-self: center;
+  padding: 0.5rem;
+}
+
+#character-stats input[type="number"] {
+  max-width: 3.5rem;
+}
+
+#pin-stockpile {
+  border: #cbdd67 solid 6px;
+  background-color: #cbdd6733;
+}
+
+#pin-mastered {
+  border: #dcaaff solid 6px;
+  background-color: #dcaaff33;
+}
+
+dialog {
+  border-radius: 7px;
+  border: #555 solid 1px;
+  max-width: 75vw;
+}
+
+dialog[open]::backdrop {
+  background: radial-gradient(closest-corner, #5555, #0000);  
+}
+
+dialog[open] { animation: show-modal 1s ease normal; }
+@keyframes show-modal{
+    from { transform: translateY(-100vh); }
+    to {  transform: translateY(0); }
+}

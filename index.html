@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The World Ends With You: Solo Remix Save Editor</title>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <script defer type="module" src="byteops.mjs"></script>
+    <script defer type="module" src="twewy.mjs"></script>
+    <script defer type="module" src="twewy-pins.mjs"></script>
+    <script defer type="module" src="main.js"></script>
+</head>
+
+<body>
+
+    <template id="pin-stockpile-slot-template">
+        <fieldset class="stats-block pin-slot pin-slot-stockpile"><legend>Slot #000</legend>
+            <img width=120 height=120 src="/img/pins/999.png">
+            <table>
+                <tr>
+                    <td><label for="type">Pin Type</label></td>
+                    <td><input name ="type" list="pin-datalist" type="search"></td>
+                </tr>
+                <tr>            
+                    <td><label for="level">Level:</label></td>
+                    <td><input type="number" name="level" min="1" max="20"></td>
+                </tr>
+                <tr>            
+                    <td><label for="bpp">BPP:</label></td>
+                    <td><input type="number" name="bpp" min="1" max="999999"></td>
+                </tr>
+                <tr>            
+                    <td><label for="spp">SPP:</label></td>
+                    <td><input type="number" name="spp" min="1" max="999999"></td>
+                </tr>
+            </table>
+        </fieldset>
+    </template>
+
+    <template id="pin-mastered-slot-template">
+        <fieldset class="stats-block pin-slot pin-slot-mastered"><legend>Slot #000</legend>
+            <img width=120 height=120 src="/img/pins/999.png">
+            <table>
+                <tr>
+                    <td><label for="type">Pin Type</label></td>
+                    <td><input name ="type" list="pin-datalist" type="search"></td>
+                </tr>
+                <tr>            
+                    <td><label for="level">Level:</label></td>
+                    <td><input type="number" name="level" min="1" max="20"></td>
+                </tr>
+                <tr>            
+                    <td><label for="quantity">Quantity:</label></td>
+                    <td><input type="number" name="quantity" min="1" max="99"></td>
+                </tr>
+            </table>
+        </fieldset>
+    </template>
+
+    <template id="neku-stats-template">
+        <fieldset id="neku-stats" class="stats-block"><legend>Neku</legend>
+            <img src="/img/characters/neku.png">
+            <table>
+                <tr>
+                    <td><label for="neku-attack">Base Attack</label></td>
+                    <td><input type="number"
+                               name="neku-attack"
+                               id="neku-attack"
+                               min="0"
+                               max="999"></td>
+                </tr>
+                <tr>
+                    <td><label for="neku-defense">Base Defense</label></td>
+                    <td><input type="number"
+                               name="neku-defense"
+                               id="neku-defense"
+                               min="0"
+                               max="999"></td>
+                </tr>
+                <tr>
+                    <td><label for="neku-luck">Base Luck</label></td>
+                    <td><input type="number" name="neku-luck" id="neku-luck" min="0" max="999"></td>
+                </tr>
+                <tr>
+                    <td><label for="neku-bravery">Bravery</label></td>
+                    <td><input type="number"
+                               name="neku-bravery"
+                               id="neku-bravery"
+                               min="0"
+                               max="999"></td>
+                </tr>
+                <tr>
+                    <td><label for="neku-level-max">Max Level</label></td>
+                    <td><input type="number"
+                               name="neku-level-max"
+                               id="neku-level-max"
+                               min="0"
+                               max="100"></td>
+                </tr>
+                <tr>
+                    <td><label for="neku-level-offset">Level Reduction</label></td>
+                    <td><input type="number"
+                               name="neku-level-offset"
+                               id="neku-level-offset"
+                               min="0"
+                               max="100"></td>
+                </tr>
+                <tr>
+                    <td><label for="neku-exp">Experience</label></td>
+                    <td><input type="number" name="neku-exp" id="neku-exp" min="0"></td>
+                </tr>
+                <tr>
+                    <td><label for="money">Money</label></td>
+                    <td><input type="number" name="money" id="money" min="0"></td>
+                </tr>
+            </table>
+        </fieldset>
+    </template>
+
+    <template id="partner-stats-template">
+        <fieldset class="stats-block"><legend>Partner Name</legend>
+            <img src="">
+            <table>
+                <tr>
+                    <td><label for="attack">Base Attack</label></td>
+                    <td><input type="number" name="attack" min="0" max="999"></td>
+                </tr>
+                <tr>
+                    <td><label for="defense">Base Defense</label></td>
+                    <td><input type="number" name="defense" min="0" max="999"></td>
+                </tr>
+                <tr>
+                    <td><label for="bravery">Bravery</label></td>
+                    <td><input type="number" name="bravery" min="0" max="999"></td>
+                </tr>
+                <tr>
+                    <td><label for="sync">Synchronization</label></td>
+                    <td><input type="number" name="sync" min="0" max="1000"></td>
+                </tr>
+            </table>
+        </fieldset>
+    </template>
+
+    <div class="corner-fold"></div>
+    <div id="source-code">
+        <a href="https://github.com/twewy-solo-remix-save-editor/twewy-solo-remix-save-editor.github.io">
+            <svg viewBox="0 0 16 16">
+                <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
+            </svg>
+        </a>
+        <p><code>v0.1</code></p>
+    </div>
+
+    <dialog id="error-modal">
+        <p></p>
+        <button onclick="this.closest('dialog').close()">Dismiss</button>
+    </dialog>
+
+    <div>
+        <label align="center" for="save-file-select" id="save-file-select-label">
+            Click the pin or drag a TWEWY <code>game.dat</code> save file onto the pin.
+            <br/>See <a href="https://github.com/twewy-solo-remix-save-editor/twewy-solo-remix-save-editor.github.io?tab=readme-ov-file#retreiving-your-gamedat-twewysr-save-file-from-android">this guide</a> for how to access your <code>game.dat</code> save file from your Android device.
+        </label>
+        <br/>
+        <input type="file"
+                id="save-file-select"
+                name="save-file-select"
+                accept=".dat,application/octet-stream"
+                required/>
+        <p align=center style="font-size: 90%"><i>This tool is highly experimental and has had limited testing.<br/>Always make a backup of your savefile before modifying!</i></p>
+    </div>
+    <div id="character-stats-wrapper" hidden>
+        <fieldset id="character-stats" class="stats-block-group">
+            <legend>Character Stats</legend>
+        </fieldset>
+    </div>
+    <div id="pin-stockpile-wrapper" hidden>
+        <fieldset id="pin-stockpile" class="stats-block-group">
+            <legend>Pin Stockpile</legend>
+        </fieldset>
+    </div>
+    <div id="pin-mastered-wrapper" hidden>
+        <fieldset id="pin-mastered" class="stats-block-group">
+            <legend>Mastered Pins</legend>
+        </fieldset>
+    </div>
+</body>
+
+</html>
