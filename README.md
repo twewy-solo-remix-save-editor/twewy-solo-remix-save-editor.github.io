@@ -126,7 +126,8 @@ Have fun!
 
 ## `imhex` pattern code
 
-![imhex](https://github.com/twewy-solo-remix-save-editor/twewy-solo-remix-save-editor.github.io/assets/139438929/1989208d-42b5-46ee-8e39-5355763848d4)
+![imhex screenshot of session](https://github.com/twewy-solo-remix-save-editor/twewy-solo-remix-save-editor.github.io/assets/85039141/1b0dff60-9fd7-4f02-80f0-73fa55265dbf)
+
 
 This is the pattern code I have developed (so far) to reverse engineer the structure of the save file.
 
@@ -223,3 +224,4 @@ deck_pin deck_pins[PIN_DECK_QUANTITY] @ PIN_DECK_START;
 ```
 
 </details>
+
